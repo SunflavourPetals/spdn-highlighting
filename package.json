@@ -21,5 +21,9 @@
       "scopeName": "source.spdn",
       "path": "./syntaxes/spdn.tmLanguage.json"
     }]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SunflavourPetals/spdn-highlighting.git"
   }
 }

@@ -1,0 +1,199 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "SPDN",
+  "scopeName": "source.spdn",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#raw-string-identifier" },
+    { "include": "#raw-string" },
+    { "include": "#string" },
+    { "include": "#string-identifier" },
+    { "include": "#char" },
+    { "include": "#at-constant" },
+    { "include": "#operator" },
+    { "include": "#numeric" },
+    { "include": "#punctuation" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.spdn",
+          "match": "//.*$"
+        },
+        {
+          "name": "comment.block.spdn",
+          "begin": "/\\*",
+          "end": "\\*/",
+          "beginCaptures": {
+            "0": { "name": "punctuation.definition.comment.begin.spdn" }
+          },
+          "endCaptures": {
+            "0": { "name": "punctuation.definition.comment.end.spdn" }
+          }
+        },
+        {
+          "name": "comment.block.nested.spdn",
+          "begin": "</",
+          "end": "/>",
+          "beginCaptures": {
+            "0": { "name": "punctuation.definition.comment.begin.spdn" }
+          },
+          "endCaptures": {
+            "0": { "name": "punctuation.definition.comment.end.spdn" }
+          }
+        }
+      ]
+    },
+
+    "raw-string-identifier": {
+      "name": "string.quoted.raw.identifier.spdn",
+      "begin": "@`([^()\\\\\\s]{0,16})\\(",
+      "end": "\\)\\1`",
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.string.begin.spdn" }
+      },
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.string.end.spdn" }
+      }
+    },
+
+    "raw-string": {
+      "name": "string.quoted.raw.spdn",
+      "begin": "@\"([^()\\\\\\s]{0,16})\\(",
+      "end": "\\)\\1\"",
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.string.begin.spdn" }
+      },
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.string.end.spdn" }
+      }
+    },
+
+    "string": {
+      "name": "string.quoted.double.spdn",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        { "include": "#escape" }
+      ],
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.string.begin.spdn" }
+      },
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.string.end.spdn" }
+      }
+    },
+
+    "string-identifier": {
+      "name": "string.quoted.identifier.spdn",
+      "begin": "`",
+      "end": "`",
+      "patterns": [
+        { "include": "#escape" }
+      ],
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.string.begin.spdn" }
+      },
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.string.end.spdn" }
+      }
+    },
+
+    "char": {
+      "name": "string.quoted.single.spdn",
+      "begin": "'",
+      "end": "'",
+      "patterns": [
+        { "include": "#escape" }
+      ],
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.character.begin.spdn" }
+      },
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.character.end.spdn" }
+      }
+    },
+
+    "at-constant": {
+      "name": "constant.language.spdn",
+      "match": "@[\\p{L}_][\\p{L}\\p{N}_]*"
+    },
+
+    "operator": {
+      "name": "keyword.operator.arithmetic.spdn",
+      "match": "[+-]+(?=[\\d.])"
+    },
+
+    "numeric": {
+      "patterns": [
+        {
+          "name": "constant.numeric.hex.float.spdn",
+          "match": "\\b0[xX][0-9a-fA-F']*\\.?[0-9a-fA-F']*[pP][+-]?[0-9']+"
+        },
+        {
+          "name": "constant.numeric.hex.spdn",
+          "match": "\\b0[xX][0-9a-fA-F']+"
+        },
+        {
+          "name": "constant.numeric.binary.spdn",
+          "match": "\\b0[bB][01']+"
+        },
+        {
+          "name": "constant.numeric.octal.spdn",
+          "match": "\\b0[0-7']+"
+        },
+        {
+          "name": "constant.numeric.float.spdn",
+          "match": "\\b\\d[\\d']*\\.[\\d']*(?:[eE][+-]?\\d[\\d']*)?"
+        },
+        {
+          "name": "constant.numeric.float.spdn",
+          "match": "\\.\\d[\\d']*(?:[eE][+-]?\\d[\\d']*)?"
+        },
+        {
+          "name": "constant.numeric.float.spdn",
+          "match": "\\b\\d[\\d']*[eE][+-]?\\d[\\d']*"
+        },
+        {
+          "name": "constant.numeric.integer.spdn",
+          "match": "\\b\\d[\\d']*"
+        }
+      ]
+    },
+
+    "punctuation": {
+      "patterns": [
+        {
+          "name": "punctuation.definition.block.spdn",
+          "match": "[{}]"
+        },
+        {
+          "name": "punctuation.definition.list.spdn",
+          "match": "[\\[\\]]"
+        },
+        {
+          "name": "punctuation.separator.key-value.spdn",
+          "match": ":"
+        },
+        {
+          "name": "punctuation.terminator.spdn",
+          "match": ";"
+        },
+        {
+          "name": "punctuation.separator.list.spdn",
+          "match": ","
+        }
+      ]
+    },
+
+    "escape": {
+      "patterns": [
+        {
+          "name": "constant.character.escape.spdn",
+          "match": "\\\\(?:[0-7]{1,3}|o\\{[0-7]+\\}|x[0-9a-fA-F]+|x\\{[0-9a-fA-F]+\\}|u[0-9a-fA-F]{4}|u\\{[0-9a-fA-F]+\\}|U[0-9a-fA-F]{8}|.)"
+        }
+      ]
+    }
+  }
+}

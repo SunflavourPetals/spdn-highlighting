@@ -1,0 +1,25 @@
+{
+  "name": "spdn-highlighting",
+  "displayName": "spdn-highlighting",
+  "description": "spdn highlighting",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.138.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "spdn",
+      "aliases": ["SPDN", "spdn"],
+      "extensions": [".spdn"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "spdn",
+      "scopeName": "source.spdn",
+      "path": "./syntaxes/spdn.tmLanguage.json"
+    }]
+  }
+}

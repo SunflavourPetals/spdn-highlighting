@@ -3,6 +3,7 @@
   "displayName": "spdn-highlighting",
   "description": "spdn highlighting",
   "version": "0.0.3",
+  "icon": "./icons/spdn.png",
   "engines": {
     "vscode": "^1.138.0"
   },

@@ -2,7 +2,7 @@
   "name": "spdn-highlighting",
   "displayName": "spdn-highlighting",
   "description": "spdn highlighting",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "engines": {
     "vscode": "^1.138.0"
   },
@@ -14,7 +14,11 @@
       "id": "spdn",
       "aliases": ["SPDN", "spdn"],
       "extensions": [".spdn"],
-      "configuration": "./language-configuration.json"
+      "configuration": "./language-configuration.json",
+      "icon": {
+        "light": "./icons/spdn.svg",
+        "dark": "./icons/spdn.svg"
+      }
     }],
     "grammars": [{
       "language": "spdn",

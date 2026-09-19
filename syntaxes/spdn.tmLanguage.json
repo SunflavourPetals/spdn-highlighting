@@ -40,10 +40,10 @@
           "begin": "</",
           "end": "/>",
           "beginCaptures": {
-            "0": { "name": "punctuation.definition.comment.begin.spdn" }
+            "0": { "name": "punctuation.definition.comment.nested.begin.spdn" }
           },
           "endCaptures": {
-            "0": { "name": "punctuation.definition.comment.end.spdn" }
+            "0": { "name": "punctuation.definition.comment.nested.end.spdn" }
           },
           "patterns": [
             {
@@ -65,10 +65,10 @@
           "begin": "/\\*",
           "end": "\\*/",
           "beginCaptures": {
-            "0": { "name": "punctuation.definition.comment.begin.spdn" }
+            "0": { "name": "punctuation.definition.comment.block.begin.spdn" }
           },
           "endCaptures": {
-            "0": { "name": "punctuation.definition.comment.end.spdn" }
+            "0": { "name": "punctuation.definition.comment.block.end.spdn" }
           }
         }
       ]
@@ -79,10 +79,10 @@
       "begin": "@`([!-'\\*-\\[\\]-~]{0,16})\\(",
       "end": "\\)\\1`",
       "beginCaptures": {
-        "0": { "name": "punctuation.definition.identifier.begin.spdn" }
+        "0": { "name": "punctuation.definition.identifier.raw.begin.spdn" }
       },
       "endCaptures": {
-        "0": { "name": "punctuation.definition.identifier.end.spdn" }
+        "0": { "name": "punctuation.definition.identifier.raw.end.spdn" }
       }
     },
 
@@ -118,7 +118,7 @@
     },
 
     "at-constant": {
-      "name": "constant.language.spdn",
+      "name": "constant.language.at.spdn",
       "match": "@[A-Za-z_\u00A8\u00AA\u00AD\u00AF\u00B2-\u00B5\u00B7-\u00BA\u00BC-\u00BE\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u00FF\u0100-\u02FF\u0370-\u167F\u1681-\u180D\u180F-\u1DBF\u1E00-\u1FFF\u200B-\u200D\u202A-\u202E\u203F-\u2040\u2054\u2060-\u206F\u2070-\u20CF\u2100-\u218F\u2460-\u24FF\u2776-\u2793\u2C00-\u2DFF\u2E80-\u2FFF\u3004-\u3007\u3021-\u302F\u3031-\u303F\u3040-\uD7FF\uF900-\uFD3D\uFD40-\uFDCF\uFDF0-\uFE1F\uFE30-\uFE44\uFE47-\uFFFD][A-Za-z0-9_\u00A8\u00AA\u00AD\u00AF\u00B2-\u00B5\u00B7-\u00BA\u00BC-\u00BE\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u00FF\u0100-\u02FF\u0370-\u167F\u1681-\u180D\u180F-\u1DBF\u1E00-\u1FFF\u200B-\u200D\u202A-\u202E\u203F-\u2040\u2054\u2060-\u206F\u2070-\u20CF\u2100-\u218F\u2460-\u24FF\u2776-\u2793\u2C00-\u2DFF\u2E80-\u2FFF\u3004-\u3007\u3021-\u302F\u3031-\u303F\u3040-\uD7FF\uF900-\uFD3D\uFD40-\uFDCF\uFDF0-\uFE1F\uFE30-\uFE44\uFE47-\uFFFD\u0300-\u036F\u1DC0-\u1DFF\u20D0-\u20FF\uFE20-\uFE2F]*"
     },
 
@@ -127,10 +127,10 @@
       "begin": "@\"([!-'\\*-\\[\\]-~]{0,16})\\(",
       "end": "\\)\\1\"",
       "beginCaptures": {
-        "0": { "name": "punctuation.definition.string.begin.spdn" }
+        "0": { "name": "punctuation.definition.string.raw.begin.spdn" }
       },
       "endCaptures": {
-        "0": { "name": "punctuation.definition.string.end.spdn" }
+        "0": { "name": "punctuation.definition.string.raw.end.spdn" }
       }
     },
 
@@ -263,7 +263,7 @@
 
     "operator": {
       "name": "keyword.operator.arithmetic.spdn",
-      "match": "[+-]+(?=\\s*[\\d.])"
+      "match": "[+-](?=\\s*[\\d.+@-])"
     },
 
     "punctuation": {
@@ -292,14 +292,22 @@
     },
 
     "invalid-operators": {
-      "name": "invalid.illegal.spdn",
-      "match": "~|!|@|#|\\$|%|\\^|&|\\*|=|/|<|>|\\?|\\||\\\\|\\(|\\)"
+      "patterns": [
+        {
+          "name": "invalid.illegal.spdn",
+          "match": "[+-](?!\\s*[\\d.+@-])"
+        },
+        {
+          "name": "invalid.illegal.spdn",
+          "match": "~|!|@|#|\\$|%|\\^|&|\\*|=|/|<|>|\\?|\\||\\\\|\\(|\\)"
+        }
+      ]
     },
 
     "escape-identifier": {
       "patterns": [
         {
-          "name": "constant.character.escape.spdn",
+          "name": "constant.character.escape.identifier.spdn",
           "match": "\\\\(?:[abfnrtv`\\\\\\?'\"]|[0-7]{1,3}|x(?:[0-9A-Fa-f]+|\\{[0-9A-Fa-f]+\\})|o\\{[0-7]+\\}|u(?:[0-9A-Fa-f]{4}|\\{[0-9A-Fa-f]+\\})|U(?:[0-9A-Fa-f]{8}|\\{[0-9A-Fa-f]+\\})|N\\{.*?\\})"
         },
         {
